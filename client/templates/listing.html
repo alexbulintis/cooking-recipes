@@ -1,0 +1,18 @@
+<template name="listing">
+    <h1>Recipes</h1>
+    {{#if currentUser}}
+        <a href="/newRecipe">New Recipe</a>
+    {{/if}}
+    <ul>
+        {{#each entries}}
+            <li>
+                <a href="/recipe/{{_id}}">{{title}}</a>
+                
+                {{#if isOwner}}
+                    <a href="/editRecipe/{{_id}}">Edit</a>
+                    <button class="delete">Delete</button>
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+</template>

@@ -1,0 +1,20 @@
+<template name="recipeForm">
+    {{#if canShow}}
+        <h1>{{showTitle}}</h1>
+        {{#with recipe}}
+            <form id="recipeForm">
+                <div>
+                    <input type="text" id="title" placeholder="Title" value="{{title}}" required>
+                </div>
+                <div>
+                    <input type="text" id="ingredients" placeholder="Ingredients" value="{{ingredients}}" required>
+                </div>
+                <div>
+                    <textarea id="instructions" placeholder="Instructions" value="{{instructions}}" required></textarea>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        {{/with}}
+        <a href="/">Back</a>
+    {{/if}}
+</template>
