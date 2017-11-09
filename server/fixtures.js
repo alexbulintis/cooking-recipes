@@ -1,6 +1,6 @@
 Meteor.startup(function(){
     var num = Recipes.find().count();
-    
+
     if(num === 0) {
         var fixtures = [
           {
@@ -11,8 +11,8 @@ Meteor.startup(function(){
           },
           {
               title: 'Chicken Sandwich',
-              ingredients: '1 chicken, 1 sandwich',
-              instructions: 'Put chicken in sandwich',
+              ingredients: '1 chicken, 2 slices of bread',
+              instructions: 'Put chicken between the slices of bread',
               owner: 'admin'
           },
           {
@@ -28,7 +28,7 @@ Meteor.startup(function(){
               owner: 'admin'
           }
         ];
-        
+
         fixtures.forEach(function(element){
             Recipes.insert(element);
         });
