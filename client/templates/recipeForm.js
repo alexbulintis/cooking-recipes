@@ -3,7 +3,7 @@ Template.recipeForm.helpers({
         var title = 'New Recipe'; // default title if we're not editing one
         var recipeId = FlowRouter.getParam('id');
         var recipe = Recipes.findOne(recipeId);
-        
+
         // if we're editing a recipe, get its title
         if(recipe) {
             title = recipe.title;
@@ -23,7 +23,7 @@ Template.recipeForm.helpers({
             // check if user is the owner
             var recipeId = FlowRouter.getParam('id');
             var recipe = Recipes.findOne(recipeId);
-            
+
             if(recipe) {
                 result = recipe.owner == Meteor.userId()
             }
@@ -34,6 +34,13 @@ Template.recipeForm.helpers({
         else {
             FlowRouter.redirect('/');
         }
+    },
+    isPrivate: function() {
+        var recipeId = FlowRouter.getParam('id');
+        var recipe = Recipes.findOne(recipeId);
+
+        if(!recipe) return false;
+        else return (recipe.private ? 'checked' : false);
     }
 });
 
@@ -41,16 +48,17 @@ Template.recipeForm.events({
     'submit #recipeForm': function(event){
         // prevent refresh
         event.preventDefault();
-        
+
         // grab the data from the form
         var data = {
             title: event.target.querySelector('#title').value,
             ingredients: event.target.querySelector('#ingredients').value,
             instructions: event.target.querySelector('#instructions').value,
+            private: event.target.querySelector('#private').checked
         };
-        
+
         var recipeId = FlowRouter.getParam('id');
-        
+
         // if there's an id, update that recipe
         if(recipeId) {
             Meteor.call('updateRecipe', recipeId, data);
@@ -59,7 +67,7 @@ Template.recipeForm.events({
             // insert into the db
             Meteor.call('insertRecipe', data);
         }
-        
+
         // redirect to home page
         FlowRouter.go('/');
     }
