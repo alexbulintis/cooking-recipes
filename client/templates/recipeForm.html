@@ -1,24 +1,31 @@
 <template name="recipeForm">
     {{#if canShow}}
-        <h1>{{showTitle}}</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>{{showTitle}}</h1>
+        </div>
+    </div>
+    <div class="row">
         {{#with recipe}}
             <form id="recipeForm">
-                <div>
-                    <input type="text" id="title" placeholder="Title" value="{{title}}" required>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="title" placeholder="Title" value="{{title}}" required>
                 </div>
-                <div>
-                    <input type="text" id="ingredients" placeholder="Ingredients" value="{{ingredients}}" required>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="ingredients" placeholder="Ingredients" value="{{ingredients}}" required>
                 </div>
-                <div>
-                    <textarea id="instructions" placeholder="Instructions" value="{{instructions}}" required></textarea>
+                <div class="form-group">
+                    <textarea class="form-control" id="instructions" placeholder="Instructions" value="{{instructions}}" required></textarea>
                 </div>
-                <button type="submit">Save</button>
-                <div>
+
+                <div class="form-group">
                     Private?
                     <input type="checkbox" id="private" checked="{{isPrivate}}"/>
                 </div>
+                <button type="submit" class="btn btn-primary">Save</button>
             </form>
         {{/with}}
-        <a href="/">Back</a>
+    </div>
+        <a href="/" class="btn btn-default">Back</a>
     {{/if}}
 </template>

@@ -1,18 +1,28 @@
 <template name="listing">
-    <h1>Recipes</h1>
-    {{#if currentUser}}
-        <a href="/newRecipe">New Recipe</a>
-    {{/if}}
-    <ul>
-        {{#each entries}}
-            <li>
-                <a href="/recipe/{{_id}}">{{title}}</a>
-                
-                {{#if isOwner}}
-                    <a href="/editRecipe/{{_id}}">Edit</a>
-                    <button class="delete">Delete</button>
-                {{/if}}
-            </li>
-        {{/each}}
-    </ul>
+    <div class="row">
+        <div class="col-xs-12 header">
+            <h1>Recipes</h1>
+            {{#if currentUser}}
+                <a href="/newRecipe" class="btn btn-success btn-block">
+                    New Recipe
+                </a>
+            {{/if}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="list-group">
+                {{#each entries}}
+                    <li class="list-group-item">
+                        <a href="/recipe/{{_id}}">{{title}}</a>
+
+                        {{#if isOwner}}
+                            <a href="/editRecipe/{{_id}}" class="list-btn btn btn-default btn-xs">Edit</a>
+                            <button class="list-btn delete btn btn-danger btn-xs">Delete</button>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
 </template>
